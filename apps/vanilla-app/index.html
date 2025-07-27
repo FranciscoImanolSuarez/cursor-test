@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanilla HTML App - Universal Design System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Vanilla HTML App with Universal Design System</h1>
+      <p>This app demonstrates vanilla HTML/JS components and islands working together</p>
+    </header>
+
+    <main class="app-main">
+      <section class="component-section">
+        <h2>Native Vanilla Components</h2>
+        <div class="component-grid">
+          <div class="component-demo">
+            <h3>Button Component</h3>
+            <button class="uds-button uds-button--primary uds-button--lg">
+              Primary Button
+            </button>
+            <button class="uds-button uds-button--secondary uds-button--md">
+              Secondary Button
+            </button>
+            <button class="uds-button uds-button--outline uds-button--sm">
+              Outline Button
+            </button>
+          </div>
+
+          <div class="component-demo">
+            <h3>Input Component</h3>
+            <div class="uds-input-container">
+              <label for="username" class="uds-input-label">Username</label>
+              <input 
+                type="text" 
+                id="username" 
+                class="uds-input" 
+                placeholder="Enter your username"
+                required
+              >
+            </div>
+            <div class="uds-input-container">
+              <label for="email" class="uds-input-label">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                class="uds-input" 
+                placeholder="Enter your email"
+                required
+              >
+              <div class="uds-input-helper">We'll never share your email</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="island-section">
+        <h2>Vanilla Islands</h2>
+        <p>These components are rendered as islands and can be hydrated independently</p>
+        
+        <div class="island-grid">
+          <div class="island-container">
+            <h3>Button Island</h3>
+            <div id="island-vanilla-button" class="island-placeholder">
+              Loading Vanilla Button Island...
+            </div>
+          </div>
+
+          <div class="island-container">
+            <h3>Input Island</h3>
+            <div id="island-vanilla-input" class="island-placeholder">
+              Loading Vanilla Input Island...
+            </div>
+          </div>
+
+          <div class="island-container">
+            <h3>Counter Island</h3>
+            <div id="island-vanilla-counter" class="island-placeholder">
+              Loading Vanilla Counter Island...
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mixed-section">
+        <h2>Mixed Framework Islands</h2>
+        <p>This section contains islands from different frameworks</p>
+        
+        <div class="mixed-grid">
+          <div class="island-container">
+            <h3>React Island</h3>
+            <div id="island-react-button" class="island-placeholder">
+              React Button Island
+            </div>
+          </div>
+
+          <div class="island-container">
+            <h3>Vue Island</h3>
+            <div id="island-vue-input" class="island-placeholder">
+              Vue Input Island
+            </div>
+          </div>
+
+          <div class="island-container">
+            <h3>Angular Island</h3>
+            <div id="island-angular-card" class="island-placeholder">
+              Angular Card Island
+            </div>
+          </div>
+
+          <div class="island-container">
+            <h3>Svelte Island</h3>
+            <div id="island-svelte-card" class="island-placeholder">
+              Svelte Card Island
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Universal Design System - Vanilla HTML Example</p>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { islandManager } from '@uds/islands';
+    import { ButtonComponent, InputComponent } from '@uds/core/components/BaseComponent';
+
+    // Create vanilla components
+    const VanillaButton = (props) => {
+      const button = document.createElement('button');
+      button.className = `uds-button uds-button--${props.variant || 'primary'} uds-button--${props.size || 'md'}`;
+      button.textContent = props.children || 'Button';
+      button.disabled = props.disabled || false;
+      
+      if (props.onClick) {
+        button.addEventListener('click', props.onClick);
+      }
+      
+      return button;
+    };
+
+    const VanillaInput = (props) => {
+      const container = document.createElement('div');
+      container.className = 'uds-input-container';
+      
+      const label = document.createElement('label');
+      label.className = 'uds-input-label';
+      label.textContent = props.label || '';
+      label.htmlFor = props.id || 'input-' + Math.random().toString(36).substr(2, 9);
+      
+      const input = document.createElement('input');
+      input.className = 'uds-input';
+      input.type = props.type || 'text';
+      input.placeholder = props.placeholder || '';
+      input.required = props.required || false;
+      input.id = label.htmlFor;
+      
+      if (props.value) {
+        input.value = props.value;
+      }
+      
+      container.appendChild(label);
+      container.appendChild(input);
+      
+      if (props.helperText) {
+        const helper = document.createElement('div');
+        helper.className = 'uds-input-helper';
+        helper.textContent = props.helperText;
+        container.appendChild(helper);
+      }
+      
+      return container;
+    };
+
+    const VanillaCounter = (props) => {
+      const container = document.createElement('div');
+      container.className = 'uds-counter';
+      
+      const display = document.createElement('div');
+      display.className = 'uds-counter-display';
+      display.textContent = props.initialValue || 0;
+      
+      const incrementBtn = document.createElement('button');
+      incrementBtn.className = 'uds-button uds-button--primary uds-button--sm';
+      incrementBtn.textContent = '+';
+      
+      const decrementBtn = document.createElement('button');
+      decrementBtn.className = 'uds-button uds-button--secondary uds-button--sm';
+      decrementBtn.textContent = '-';
+      
+      let count = props.initialValue || 0;
+      
+      incrementBtn.addEventListener('click', () => {
+        count++;
+        display.textContent = count;
+        if (props.onChange) props.onChange(count);
+      });
+      
+      decrementBtn.addEventListener('click', () => {
+        count--;
+        display.textContent = count;
+        if (props.onChange) props.onChange(count);
+      });
+      
+      container.appendChild(display);
+      container.appendChild(incrementBtn);
+      container.appendChild(decrementBtn);
+      
+      return container;
+    };
+
+    // Register components in the island manager
+    islandManager.register('VanillaButton', VanillaButton, {
+      framework: 'vanilla',
+      ssr: true,
+      hydrate: true,
+      priority: 'high',
+    });
+
+    islandManager.register('VanillaInput', VanillaInput, {
+      framework: 'vanilla',
+      ssr: true,
+      hydrate: true,
+      priority: 'normal',
+    });
+
+    islandManager.register('VanillaCounter', VanillaCounter, {
+      framework: 'vanilla',
+      ssr: true,
+      hydrate: true,
+      priority: 'low',
+    });
+
+    // Initialize islands after DOM is loaded
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Create islands
+        const buttonIsland = islandManager.createIsland({
+          id: 'vanilla-button',
+          component: 'VanillaButton',
+          props: {
+            variant: 'primary',
+            size: 'lg',
+            children: 'Vanilla Island Button',
+            onClick: () => console.log('Vanilla button clicked!'),
+          },
+          hydrate: true,
+          priority: 'high',
+        });
+
+        const inputIsland = islandManager.createIsland({
+          id: 'vanilla-input',
+          component: 'VanillaInput',
+          props: {
+            type: 'email',
+            placeholder: 'Enter your email',
+            label: 'Email',
+            helperText: 'We\'ll never share your email',
+          },
+          hydrate: true,
+          priority: 'normal',
+        });
+
+        const counterIsland = islandManager.createIsland({
+          id: 'vanilla-counter',
+          component: 'VanillaCounter',
+          props: {
+            initialValue: 0,
+            onChange: (value) => console.log('Counter value:', value),
+          },
+          hydrate: true,
+          priority: 'low',
+        });
+
+        // Mount islands
+        await islandManager.mountIsland(buttonIsland);
+        await islandManager.mountIsland(inputIsland);
+        await islandManager.mountIsland(counterIsland);
+
+        console.log('Vanilla islands initialized successfully');
+      } catch (error) {
+        console.error('Failed to initialize Vanilla islands:', error);
+      }
+    });
+  </script>
+</body>
+</html>

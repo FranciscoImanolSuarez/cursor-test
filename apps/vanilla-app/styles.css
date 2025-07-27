@@ -1,0 +1,367 @@
+/* Import design tokens */
+@import url('../../packages/tokens/src/tokens.css');
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+/* App layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0 0 1rem 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.app-header p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.app-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.component-section,
+.island-section,
+.mixed-section {
+  margin-bottom: 3rem;
+}
+
+.component-section h2,
+.island-section h2,
+.mixed-section h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.component-grid,
+.island-grid,
+.mixed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.component-demo,
+.island-container {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e5e9;
+}
+
+.component-demo h3,
+.island-container h3 {
+  margin: 0 0 1rem 0;
+  color: #555;
+  font-size: 1.2rem;
+}
+
+.island-placeholder {
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 6px;
+  padding: 2rem;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.app-footer {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  text-align: center;
+  color: #6c757d;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Universal Design System Components */
+
+/* Button Component */
+.uds-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #e5e7eb;
+  color: #374151;
+  margin: 0.25rem;
+}
+
+.uds-button:hover {
+  background-color: #d1d5db;
+}
+
+.uds-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.uds-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Button variants */
+.uds-button--primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.uds-button--primary:hover {
+  background-color: #2563eb;
+}
+
+.uds-button--secondary {
+  background-color: #6b7280;
+  color: white;
+}
+
+.uds-button--secondary:hover {
+  background-color: #4b5563;
+}
+
+.uds-button--outline {
+  background-color: transparent;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.uds-button--outline:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.uds-button--ghost {
+  background-color: transparent;
+  color: #6b7280;
+}
+
+.uds-button--ghost:hover {
+  background-color: #f3f4f6;
+}
+
+.uds-button--danger {
+  background-color: #ef4444;
+  color: white;
+}
+
+.uds-button--danger:hover {
+  background-color: #dc2626;
+}
+
+/* Button sizes */
+.uds-button--sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.uds-button--md {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.uds-button--lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Input Component */
+.uds-input-container {
+  margin-bottom: 1rem;
+}
+
+.uds-input-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.uds-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #374151;
+  background-color: white;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.uds-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.uds-input:disabled {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.uds-input:invalid {
+  border-color: #ef4444;
+}
+
+.uds-input-helper {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Counter Component */
+.uds-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 0.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.uds-counter-display {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  min-width: 3rem;
+  text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .app-main {
+    padding: 1rem;
+  }
+  
+  .component-grid,
+  .island-grid,
+  .mixed-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .uds-counter {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .uds-button {
+    transition: none;
+  }
+  
+  .uds-input {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .uds-button {
+    border-width: 2px;
+  }
+  
+  .uds-input {
+    border-width: 2px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+  
+  .component-demo,
+  .island-container {
+    background: #374151;
+    border-color: #4b5563;
+  }
+  
+  .component-demo h3,
+  .island-container h3 {
+    color: #e5e7eb;
+  }
+  
+  .uds-button {
+    background-color: #4b5563;
+    color: #f9fafb;
+  }
+  
+  .uds-button:hover {
+    background-color: #6b7280;
+  }
+  
+  .uds-input {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #f9fafb;
+  }
+  
+  .uds-input:focus {
+    border-color: #60a5fa;
+  }
+  
+  .uds-input-label {
+    color: #e5e7eb;
+  }
+  
+  .uds-counter {
+    background: #374151;
+    border-color: #4b5563;
+  }
+  
+  .uds-counter-display {
+    color: #f9fafb;
+  }
+}

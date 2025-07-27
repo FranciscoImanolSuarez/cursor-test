@@ -1,0 +1,39 @@
+{
+  "name": "@uds/core",
+  "version": "1.0.0",
+  "description": "Core design system components",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && npm run build:css",
+    "build:css": "node scripts/build-css.js",
+    "dev": "concurrently \"tsc --watch\" \"npm run build:css -- --watch\"",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "@uds/tokens": "workspace:*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-i18next": "^13.0.0",
+    "i18next": "^23.0.0",
+    "classnames": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "css-loader": "^6.8.0",
+    "style-loader": "^3.3.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "concurrently": "^8.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  }
+}
