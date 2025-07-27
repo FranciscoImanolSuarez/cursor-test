@@ -1,0 +1,5 @@
+quiero que crees un design system de marca blanca para React con una arquitectura escalable y packages, vas a usar css modules para manejar los estilos aunque si encontras una mejor forma hacelo, necesito que esté con typescript storybook y debe ser basado en tokens que se pueden extraer de
+figma para esto crea una extensión o algo que permita extraerlos y marcarlos basados en algún DTO, necesito muchas
+pantallas y configuraciones en storybook este design system debe ser 100% accesible  tener i18n nativo. por otro lado me gustaría que simules o encuentres la forma de tener islas como tiene astros, por eso crea una arquitectura para Eso y que tenga un api completo que me
+Permita tener eso, también crea los
+Componentes bases, el propósito también es que podamos tener un design system basado en un solo base code pero que compile a vue angular svelt y react 
