@@ -15,7 +15,13 @@
     "storybook": "turbo run storybook",
     "build-storybook": "turbo run build-storybook",
     "extract-tokens": "node scripts/extract-figma-tokens.js",
-    "generate-components": "node scripts/generate-components.js"
+    "generate-components": "node scripts/generate-components.js",
+    "demo-islands": "node scripts/demo-islands.js",
+    "dev:react-app": "cd apps/react-app && npm run dev",
+    "dev:vue-app": "cd apps/vue-app && npm run dev",
+    "dev:angular-app": "cd apps/angular-app && npm run dev",
+    "dev:svelte-app": "cd apps/svelte-app && npm run dev",
+    "dev:vanilla-app": "cd apps/vanilla-app && python3 -m http.server 3000"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
