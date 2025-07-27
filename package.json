@@ -1,0 +1,32 @@
+{
+  "name": "universal-design-system",
+  "version": "1.0.0",
+  "description": "Universal Design System with Island Architecture",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "storybook": "turbo run storybook",
+    "build-storybook": "turbo run build-storybook",
+    "extract-tokens": "node scripts/extract-figma-tokens.js",
+    "generate-components": "node scripts/generate-components.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
